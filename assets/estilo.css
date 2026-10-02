@@ -1,0 +1,93 @@
+  /* Una columna de lectura; cada sección cuenta cómo quedó y luego pregunta.
+     Solo modo claro, a propósito: se ve igual aunque el equipo esté en oscuro. */
+  :root {
+    color-scheme: light;
+    --ground: #FFFFFF;
+    --panel: #F7F5F9;
+    --ink: #1F1A24;
+    --muted: #5E5766;
+    --rule: #E4DFE9;
+    --accent: __ACENTO__;
+    --accent-soft: __ACENTO_SUAVE__;
+    --on-accent: #FFFFFF;
+    --ok: #1B6B45;
+    --alert: #9A2B2B;
+    --alert-soft: #FDF6F6;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font: 15px/1.6 var(--sans); }
+  [hidden] { display: none !important; }
+  .wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 72px; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 24px; }
+  h1 { font: 600 clamp(26px, 5vw, 34px)/1.2 var(--serif); margin: 0 0 12px; text-wrap: balance; }
+  .lead { font-size: 16px; max-width: 64ch; margin: 0; }
+  .pasos { margin: 16px 0 0; padding-left: 20px; color: var(--muted); display: grid; gap: 2px; }
+  .intro { color: var(--muted); font-size: 14px; margin: 12px 0 0; max-width: 64ch; }
+  section { padding-top: 40px; }
+  h2 { font: 600 22px/1.25 var(--serif); margin: 0 0 8px; text-wrap: balance; }
+  h2 .num { color: var(--accent); margin-right: 6px; }
+  section > p { max-width: 66ch; margin: 0 0 16px; }
+  ul.lista { margin: 0; padding-left: 20px; max-width: 66ch; display: grid; gap: 6px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+  th { background: var(--panel); font-weight: 600; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { min-width: 180px; font-weight: 500; }
+  .est { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; background: var(--accent-soft); color: var(--accent); }
+  .flujo { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 28px; }
+  .flujo li { position: relative; border: 1.5px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 8px 12px; font-size: 14px; font-weight: 500; }
+  .flujo li + li::before { content: "→"; position: absolute; left: -21px; top: 50%; translate: 0 -50%; color: var(--muted); font-weight: 400; }
+  .flujo li.nuevo { background: var(--accent); color: var(--on-accent); }
+  .flujo li span { display: block; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; opacity: .85; }
+  .aprobar { margin-top: 16px; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; }
+  .aprobar-t { margin: 0; font-weight: 600; }
+  .choices { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+  .choices label { display: inline-flex; align-items: center; gap: 6px; background: var(--ground); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px; font-size: 14px; cursor: pointer; }
+  .choices input, .opciones input { accent-color: var(--accent); }
+  .choices input { margin: 0; }
+  .choices label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  textarea, input[type=text] { width: 100%; font: 14px/1.5 var(--sans); color: var(--ink); background: var(--ground); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; }
+  textarea { min-height: 56px; resize: vertical; }
+  textarea:focus, input:focus, button:focus-visible, .choices label:focus-within, .opciones label:focus-within { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .preguntas { margin-top: 20px; }
+  h3.sub { font: 600 16px/1.3 var(--serif); margin: 20px 0 4px; }
+  .preguntas h3.sub { margin-top: 0; }
+  .pregunta { display: grid; gap: 6px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .pregunta:last-child { border-bottom: 0; }
+  .pregunta-t { margin: 0; font-weight: 500; max-width: 70ch; }
+  .pregunta .n { color: var(--accent); font-weight: 600; }
+  .pregunta textarea { min-height: 40px; }
+  .ayuda { margin: 0; font-size: 13px; color: var(--muted); max-width: 66ch; }
+  .opciones { display: grid; gap: 6px; border: 0; padding: 0; margin: 4px 0 0; min-width: 0; }
+  .opciones label { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--ground); font-size: 14px; cursor: pointer; }
+  .opciones input { margin: 4px 0 0; flex: none; }
+  .opciones label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .hoy { font-style: normal; font-size: 12px; font-weight: 600; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0 7px; margin-left: 6px; white-space: nowrap; }
+  .niveles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 10px; }
+  .nivel { display: grid; gap: 4px; min-width: 0; }
+  .nivel label { font-weight: 600; font-size: 14px; color: var(--accent); }
+  .nivel textarea { min-height: 120px; }
+  .ejemplo { font-size: 13px; color: var(--muted); background: var(--panel); border-radius: 6px; padding: 8px 12px; white-space: pre-line; margin: 10px 0 0; }
+  .falta { border-color: var(--alert) !important; background: var(--alert-soft); }
+  .firma { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
+  .firma label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .final { margin-top: 20px; }
+  .progreso { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  button { font: 600 15px var(--sans); border-radius: 6px; padding: 11px 20px; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent); }
+  button.sec { background: var(--ground); color: var(--accent); }
+  .aviso { color: var(--alert); font-size: 14px; margin: 10px 0 0; }
+  .resultado { margin-top: 20px; border: 2px solid var(--accent); border-radius: 8px; padding: 16px; background: var(--ground); }
+  .resultado h3 { margin: 0 0 4px; font: 600 18px/1.3 var(--serif); color: var(--accent); }
+  .resultado p { margin: 0 0 12px; }
+  #mensaje { min-height: 260px; background: var(--panel); }
+  .acciones { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+  .estado { font-size: 14px; color: var(--ok); font-weight: 600; }
+  .guardado { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 10; max-width: calc(100% - 32px); margin: 0; background: var(--ground); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); box-shadow: 0 2px 10px rgba(31, 26, 36, .12); }
+  .guardado.ok { color: var(--ok); }
+  .guardado.error { color: var(--alert); border-radius: 8px; }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+  @media (max-width: 520px) { body { font-size: 14px; } th, td { padding: 8px 10px; } td:first-child { min-width: 130px; } }
+  .hoy.prop { color: var(--accent); border-color: var(--accent); }
